@@ -1,0 +1,6 @@
+import 'package:app_reporte_iestp_sullana/features/settings/data/models/usuario_publico.dart';
+
+abstract class UsersRepository {
+  Future<UsuarioPublico?> getCurrentUser();
+  Future<void> updateUser(UsuarioPublico user);
+}
