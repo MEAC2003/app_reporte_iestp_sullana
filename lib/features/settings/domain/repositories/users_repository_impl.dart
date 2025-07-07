@@ -11,7 +11,17 @@ class UsersRepositoryImpl implements UsersRepository {
   Future<UsuarioPublico?> getCurrentUser() => _dataSource.getCurrentUser();
 
   @override
+  Future<List<UsuarioPublico>> getUsers() async {
+    return await _dataSource.getUsers();
+  }
+
+  @override
   Future<void> updateUser(UsuarioPublico user) async {
     await _dataSource.updateUser(user);
+  }
+
+  @override
+  Future<void> updateUserRole(String userId, String roleId) async {
+    await _dataSource.updateUserRole(userId, roleId);
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 class UserProvider extends ChangeNotifier {
   final UsersRepository _repository;
   AuthProvider _authProvider;
+  List<UsuarioPublico> _users = [];
   UsuarioPublico? _user;
   bool _isLoading = false;
   String? _error;
@@ -18,6 +19,7 @@ class UserProvider extends ChangeNotifier {
   }
 
   UsuarioPublico? get user => _user;
+  List<UsuarioPublico> get users => _users;
   bool get isLoading => _isLoading;
   String? get error => _error;
 
@@ -93,5 +95,50 @@ class UserProvider extends ChangeNotifier {
   void dispose() {
     _authProvider.removeListener(_onAuthStateChanged);
     super.dispose();
+  }
+
+  Future<void> getUsers() async {
+    print('getUsers called');
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      print('Fetching all users from repository');
+      _users = await _repository.getUsers();
+      _isLoading = false;
+      print('Users fetched: ${_users.length} users');
+    } catch (e) {
+      print('Error fetching users: $e');
+      _error = e.toString();
+      _isLoading = false;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> updateUserRole(String userId, String newRole) async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      await _repository.updateUserRole(userId, newRole);
+
+      // Actualizar el rol del usuario en la lista local si es el usuario actual
+      if (_user != null && _user!.id == userId) {
+        _user = _user!.copyWith(rol: newRole);
+      }
+
+      // Recargar la lista de usuarios
+      await getUsers();
+
+      _isLoading = false;
+    } catch (e) {
+      _error = e.toString();
+      _isLoading = false;
+    }
+    notifyListeners();
   }
 }

@@ -25,7 +25,7 @@ class SocialMediaButton extends StatelessWidget {
         child: ElevatedButton.icon(
           style: ButtonStyle(
             backgroundColor: const WidgetStatePropertyAll(
-              AppColors.primaryColor,
+              AppColors.primarySkyBlue,
             ),
             shape: WidgetStatePropertyAll(
               RoundedRectangleBorder(

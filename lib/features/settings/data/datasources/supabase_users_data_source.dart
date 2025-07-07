@@ -19,10 +19,36 @@ class SupabaseUsersDataSourceImpl {
     return UsuarioPublico.fromJson(response);
   }
 
+  Future<List<UsuarioPublico>> getUsers() async {
+    final response = await _supabaseClient
+        .from('usuario_publico')
+        .select()
+        .order('created_at', ascending: false);
+
+    return (response as List)
+        .map((user) => UsuarioPublico.fromJson(user))
+        .toList();
+  }
+
   Future<void> updateUser(UsuarioPublico user) async {
     await _supabaseClient
         .from('usuario_publico')
         .update(user.toJson())
         .eq('id', user.id);
+  }
+
+  Future<void> updateUserRole(String userId, String roleId) async {
+    try {
+      print('🔄 Actualizando rol en BD - Usuario: $userId, Rol: $roleId');
+
+      await _supabaseClient
+          .from('usuario_publico')
+          .update({'rol': roleId})
+          .eq('id', userId);
+    } catch (e) {
+      throw Exception(
+        'Error al actualizar el rol del usuario: ${e.toString()}',
+      );
+    }
   }
 }

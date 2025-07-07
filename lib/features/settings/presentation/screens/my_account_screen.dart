@@ -2,7 +2,6 @@ import 'package:app_reporte_iestp_sullana/core/config/app_router.dart';
 import 'package:app_reporte_iestp_sullana/features/settings/data/models/usuario_publico.dart';
 import 'package:app_reporte_iestp_sullana/features/settings/presentation/providers/users_provider.dart';
 import 'package:app_reporte_iestp_sullana/features/settings/presentation/widgets/widgets.dart';
-import 'package:app_reporte_iestp_sullana/features/shared/navigation_provider.dart';
 import 'package:app_reporte_iestp_sullana/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -26,11 +25,6 @@ class _ConfigViewState extends State<_ConfigView> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   final productProvider =
-    //       Provider.of<ProductProvider>(context, listen: false);
-    //   productProvider.loadMostSoldProducts();
-    // });
   }
 
   @override
@@ -109,125 +103,7 @@ class _ConfigViewState extends State<_ConfigView> {
               SizedBox(height: AppSize.defaultPadding * 1.5),
               UserInfoRow(title: 'Nombre', text: user.nombre),
               UserInfoRow(title: 'Correo electrónico', text: user.correo),
-              SizedBox(height: AppSize.defaultPadding * 2),
-              //   Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Row(
-              //         children: [
-              //           Text(
-              //             'Lo mas vendido',
-              //             style: AppStyles.h3p5(
-              //               color: AppColors.darkColor,
-              //               fontWeight: FontWeight.w600,
-              //             ),
-              //           ),
-              //           SizedBox(width: AppSize.defaultPaddingHorizontal * 0.2),
-              //           const Icon(Icons.star, color: Colors.amber, size: 22),
-              //         ],
-              //       ),
-              //       // TextButton(
-              //       //   onPressed: () {
-              //       //     Provider.of<NavigationProvider>(context, listen: false)
-              //       //         .setIndex(1);
-              //       //     Provider.of<ProductProvider>(context, listen: false)
-              //       //         .resetFilter();
-              //       //     context.push(AppRouter.catalog);
-              //       //   },
-              //       //   child: Text(
-              //       //     'Ver más',
-              //       //     style: AppStyles.h4(
-              //       //       color: AppColors.primaryColor,
-              //       //       fontWeight: FontWeight.w700,
-              //       //     ),
-              //       //   ),
-              //       // ),
-              //     ],
-              //   ),
-              //   // SizedBox(
-              //   //   height: AppSize.defaultPadding * 0.3,
-              //   // ),
-              //   // SizedBox(
-              //   //   child: SingleChildScrollView(
-              //   //     child: Consumer<ProductProvider>(
-              //   //       builder: (context, productProvider, child) {
-              //   //         if (productProvider.isLoading) {
-              //   //           return const Center(child: CircularProgressIndicator());
-              //   //         }
-
-              //   //         final mostSoldProducts = productProvider.mostSoldProducts;
-
-              //   //         if (mostSoldProducts.isEmpty) {
-              //   //           return SizedBox(
-              //   //             width: double.infinity,
-              //   //             height: 100.h,
-              //   //             child: Column(
-              //   //               mainAxisAlignment: MainAxisAlignment.center,
-              //   //               crossAxisAlignment: CrossAxisAlignment.center,
-              //   //               children: [
-              //   //                 Text(
-              //   //                   productProvider.isFiltering
-              //   //                       ? 'No hay productos más vendidos en esta categoría'
-              //   //                       : 'No hay productos más vendidos disponibles',
-              //   //                   textAlign: TextAlign.center,
-              //   //                   style: AppStyles.h4(
-              //   //                     color: AppColors.darkColor,
-              //   //                     fontWeight: FontWeight.w500,
-              //   //                   ),
-              //   //                 ),
-              //   //               ],
-              //   //             ),
-              //   //           );
-              //   //         }
-
-              //   //         return Column(
-              //   //           children: [
-              //   //             GridView.builder(
-              //   //               physics: const NeverScrollableScrollPhysics(),
-              //   //               shrinkWrap: true,
-              //   //               gridDelegate:
-              //   //                   const SliverGridDelegateWithFixedCrossAxisCount(
-              //   //                 crossAxisCount: 2,
-              //   //                 crossAxisSpacing: 30,
-              //   //                 mainAxisSpacing: 7,
-              //   //                 mainAxisExtent: 320,
-              //   //               ),
-              //   //               itemCount: mostSoldProducts.length,
-              //   //               itemBuilder: (context, index) {
-              //   //                 final producto = mostSoldProducts[index];
-              //   //                 return ProductCard(
-              //   //                   imageUrl: producto.imageUrl.isNotEmpty
-              //   //                       ? producto.imageUrl[0]
-              //   //                       : AppAssets.uniforme,
-              //   //                   price: producto.salePrice.toString(),
-              //   //                   title: producto.name
-              //   //                       .split(' ')
-              //   //                       .map((word) =>
-              //   //                           word[0].toUpperCase() +
-              //   //                           word.substring(1).toLowerCase())
-              //   //                       .join(' '),
-              //   //                   circleColor: producto.currentStock >
-              //   //                           producto.minimumStock
-              //   //                       ? Colors.green
-              //   //                       : producto.currentStock <=
-              //   //                                   producto.minimumStock &&
-              //   //                               producto.currentStock >= 1
-              //   //                           ? Colors.orange
-              //   //                           : Colors.red,
-              //   //                   onSelect: () {
-              //   //                     context.push(
-              //   //                         '${AppRouter.productDetails}/${producto.id}');
-              //   //                   },
-              //   //                 );
-              //   //               },
-              //   //             )
-              //   //           ],
-              //   //         );
-              //   //       },
-              //   //     ),
-              //   //   ),
-              //   // ),
-              //   // SizedBox(height: AppSize.defaultPadding * 3),
+              SizedBox(height: AppSize.defaultPadding * 4),
             ],
           ),
         ),

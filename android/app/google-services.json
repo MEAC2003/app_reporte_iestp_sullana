@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "618179665532",
+    "project_id": "app-reporte-iestp-sullana",
+    "storage_bucket": "app-reporte-iestp-sullana.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618179665532:android:bd69daecb020bcf75473f9",
+        "android_client_info": {
+          "package_name": "com.example.app_reporte_iestp_sullana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADNjY2mummAaI1ljSdey7zfXhNnHhkUco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

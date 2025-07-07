@@ -34,7 +34,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
   @override
   Future<AuthResult> signInWithGoogle() async {
     try {
-      print('🔄 Iniciando Google Sign-In...');
+      print('Iniciando Google Sign-In...');
 
       // Limpiar sesiones anteriores para evitar conflictos
       await _googleSignIn.signOut();
@@ -42,7 +42,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
-        print('❌ Usuario canceló el sign-in');
+        print('Usuario canceló el sign-in');
         return AuthResult(
           success: false,
           isNewUser: false,
@@ -50,13 +50,13 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
         );
       }
 
-      print('✅ Usuario Google obtenido: ${googleUser.email}');
+      print('Usuario Google obtenido: ${googleUser.email}');
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
 
       if (googleAuth.idToken == null || googleAuth.accessToken == null) {
-        print('❌ Error: Tokens no obtenidos');
+        print('Error: Tokens no obtenidos');
         return AuthResult(
           success: false,
           isNewUser: false,
@@ -64,8 +64,8 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
         );
       }
 
-      print('✅ Tokens obtenidos correctamente');
-      print('🔄 Autenticando con Supabase...');
+      print('Tokens obtenidos correctamente');
+      print('Autenticando con Supabase...');
 
       final AuthResponse res = await _supabase.auth.signInWithIdToken(
         provider: OAuthProvider.google,
@@ -74,7 +74,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
       );
 
       if (res.user == null) {
-        print('❌ Error: Usuario null después de auth');
+        print('Error: Usuario null después de auth');
         return AuthResult(
           success: false,
           isNewUser: false,
@@ -82,7 +82,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
         );
       }
 
-      print('✅ Autenticación exitosa: ${res.user!.email}');
+      print('Autenticación exitosa: ${res.user!.email}');
 
       // Verificar si es un usuario nuevo
       final isNewUser =
@@ -92,7 +92,7 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
       // Obtener avatar URL del perfil de Google
       final avatarUrl = res.user!.userMetadata?['avatar_url'];
 
-      print('📊 Usuario nuevo: $isNewUser');
+      print('Usuario nuevo: $isNewUser');
 
       return AuthResult(
         success: true,
@@ -100,8 +100,8 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
         avatarUrl: avatarUrl,
       );
     } catch (e) {
-      print('❌ Error completo en signInWithGoogle: $e');
-      print('❌ Tipo de error: ${e.runtimeType}');
+      print('Error completo en signInWithGoogle: $e');
+      print('Tipo de error: ${e.runtimeType}');
 
       // Manejo específico de errores comunes
       String errorMessage = e.toString();
@@ -121,9 +121,9 @@ class SupabaseAuthDataSourceImpl implements AuthDataSource {
     try {
       await _googleSignIn.signOut();
       await _supabase.auth.signOut();
-      print('✅ Sign out exitoso');
+      print('Sign out exitoso');
     } catch (e) {
-      print('❌ Error en sign out: $e');
+      print('Error en sign out: $e');
     }
   }
 

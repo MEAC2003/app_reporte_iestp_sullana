@@ -62,4 +62,6 @@ class UsuarioPublico {
     "rol": rol,
     "avatar_url": avatarUrl,
   };
+
+  firstWhere(bool Function(dynamic u) param0) {}
 }
